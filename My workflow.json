@@ -1,0 +1,164 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        0,
+        0
+      ],
+      "id": "76890bfb-6d16-4cef-8771-b41e20f92ced",
+      "name": "When chat message received",
+      "webhookId": "6838b5d7-0608-4cc2-b104-46a32e14f6bf"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "7902e0d1-dafa-4bc1-a11e-78a1209068aa",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        240,
+        320
+      ],
+      "id": "3929d1b9-e229-4780-837f-52efa7109217",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        560,
+        208
+      ],
+      "id": "6c4e3b92-881a-4622-9a1b-c208125f50fc",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolSerpApi",
+      "typeVersion": 1,
+      "position": [
+        416,
+        320
+      ],
+      "id": "7ba2980a-b29d-446f-9648-06ea447e2c52",
+      "name": "SerpAPI",
+      "credentials": {
+        "serpApi": {
+          "id": "wYOMwM7D6H9y4uX5",
+          "name": "SerpAPI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "llama-3.1-8b-instant",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGroq",
+      "typeVersion": 1,
+      "position": [
+        16,
+        224
+      ],
+      "id": "4952f522-6d09-452f-85c9-b245b0f3499b",
+      "name": "Groq Chat Model",
+      "credentials": {
+        "groqApi": {
+          "id": "JC2frvMMP0OZP2HA",
+          "name": "Groq account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SerpAPI": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Groq Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "a88caa8e-c3cf-46f8-b501-acc30c2074d2",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9288eeb4e0228666a2b9f7e778f56a078e5692dd25849ad68615df3f54c914d1"
+  },
+  "id": "_XnOd84USG3W5Y44Pel3B",
+  "tags": []
+}
